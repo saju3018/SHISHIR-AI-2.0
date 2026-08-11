@@ -3,13 +3,13 @@ const axios = require("axios");
 module.exports = {
   config: {
     name: "fork",
-    version: "0.0.7",
-    author: "Azadx69x",
+    version: "1.0",
+    author: "Anik Islam Sadik",
     countDown: 3,
     role: 0,
-    category: "system",
-    shortDescription: "𝐆𝐢𝐭𝐇𝐮𝐛 𝐅𝐨𝐫𝐤",
-    longDescription: "𝐅𝐞𝐭𝐜𝐡 𝐟𝐨𝐫𝐤",
+    category: "utility",
+    shortDescription: "GitHub Fork Info",
+    longDescription: "Fetch repository fork details",
     guide: {
       en: "{pn}"
     }
@@ -17,30 +17,17 @@ module.exports = {
 
   onStart: async function ({ message }) {
     try {
-      const repo = "ncazad/X69X-BOT-V3";
-
+      const repo = "aLpha-x69/SATURO-BOT-V3";
       const res = await axios.get(`https://api.github.com/repos/${repo}`);
       const data = res.data;
 
-      const text = `
-𝐗69𝐗 𝐁𝐎𝐓 𝐕3
-𝐔𝐩𝐝𝐚𝐭𝐞 𝐅𝐨𝐫𝐤
+      const msg = `╭──〔 𝐆𝐈𝐓𝐇𝐔𝐁 𝐅𝐎𝐑𝐊 〕──╮\n│\n│ 📦 Repo: ${data.name}\n│ 👑 Owner: ${data.owner.login}\n│ 🍴 Forks: ${data.forks_count}\n│ ⭐ Stars: ${data.stargazers_count}\n│ 👀 Watchers: ${data.watchers_count}\n│\n│ 🔗 Link:\n│ ${data.html_url}\n│\n╰─────────────────────`;
 
-📦 𝐍𝐚𝐦𝐞: ${data.name}
-👑 𝐎𝐰𝐧𝐞𝐫: ${data.owner.login}
-🍴 𝐅𝐨𝐫𝐤𝐬: ${data.forks_count}
-⭐ 𝐒𝐭𝐚𝐫𝐬: ${data.stargazers_count}
-👀 𝐖𝐚𝐭𝐜𝐡𝐞𝐫𝐬: ${data.watchers_count}
-
-🔗 𝐅𝐨𝐫𝐤 𝐋𝐢𝐧𝐤:
-${data.html_url}
-`;
-
-      return message.reply(text);
+      return message.reply(msg);
 
     } catch (err) {
-      console.error("FORK CMD ERROR:", err);
-      return message.reply("❌ 𝐂𝐨𝐮𝐥𝐝 𝐧𝐨𝐭 𝐟𝐞𝐭𝐜𝐡 𝐟𝐨𝐫𝐤.");
+      console.error("Fork Error:", err);
+      return message.reply("❌ Failed to fetch repository info.");
     }
   }
 };

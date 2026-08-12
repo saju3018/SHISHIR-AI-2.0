@@ -150,7 +150,7 @@ module.exports.onReply = async ({ api, event, Reply }) => {
 module.exports.onChat = async ({ api, event, usersData }) => {
     try {
         const body = event.body ? event.body.toLowerCase() : "";
-        if (body.startsWith("baby") || body.startsWith("বট") || body.startsWith("baby") || body.startsWith("hinata") || body.startsWith("xadika") || body.startsWith("bby") || body.startsWith("bot") || body.startsWith("jan") || body.startsWith("babu") || body.startsWith("alya")) {
+        if (body.startsWith("baby") || body.startsWith("বট") || body.startsWith("baby") || body.startsWith("hinata") || body.startsWith("mahiru") || body.startsWith("bby") || body.startsWith("bot") || body.startsWith("jan") || body.startsWith("babu") || body.startsWith("alya")) {
             const arr = body.replace(/^\S+\s*/, "");
             const uid = event.senderID;
             const senderName = (await usersData.getName(uid)) || "User";

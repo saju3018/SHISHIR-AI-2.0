@@ -2,13 +2,13 @@ module.exports = {
   config: {
     name: "listbox",
     aliases: ["grouplist", "listgroup"],
-    author: "xalman",
+    author: "Anik Islam Sadik",
     version: "2.7",
     cooldowns: 5,
     role: 2,
     shortDescription: { en: "List all groups with pagination and control options." },
     longDescription: { en: "List all group chats the bot is in with options to leave or join." },
-    category: "owner",
+    category: "GROUP",
     guide: { en: "{p}{n} [page_number]" }
   },
 
@@ -139,4 +139,16 @@ module.exports = {
   }
 };
 
-function getPageMessage(groups, page, limit, to
+function getPageMessage(groups, page, limit, totalPages) {
+  const start = (page - 1) * limit;
+  const end = start + limit;
+  const pagedGroups = groups.slice(start, end);
+
+  let message = `╭──────╮\n│ 𝐆𝐑𝐎𝐔𝐏 𝐋𝐈𝐒𝐓\n├──────┤\n`;
+  pagedGroups.forEach((group, index) => {
+    const groupName = group.threadName || group.name || "Unnamed Group";
+    message += `│${index + 1}. ${groupName}\n│𝐓𝐈𝐃: ${group.threadID}\n├──────┤\n`;
+  });
+  message += `│ Page: ${page}/${totalPages}\n╰──────╯\n\n💡 Reply with:\n"next" - Next page\n"back" - Previous page\n"left [num]" - Leave group (e.g. left 1)\n"join [num]" - Add you to group (e.g. join 1)`;
+  return message;
+}

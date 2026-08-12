@@ -10,7 +10,7 @@ module.exports = {
     name: "emojimix",
     aliases: ["mix"],
     version: "1.7",
-    author: "MahMUD",
+    author: "Anik Islam Sadik",
     countDown: 5,
     role: 0,
     guide: "{pn} <emoji1> <emoji2>\nExample: {pn} 🙂 😘",

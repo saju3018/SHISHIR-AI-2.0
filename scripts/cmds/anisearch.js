@@ -1,78 +1,53 @@
 const axios = require("axios");
-const fs = require("fs");
-const path = require("path");
 
 module.exports = {
   config: {
     name: "anisearch",
     aliases: ["ani"],
-    version: "0.0.7",
-    author: "Azadx69x",
+    version: "2.2",
+    author: "Anik Islam Sadik",
+    countDown: 3,
     role: 0,
-    category: "anime",
-    shortDescription: "Fetch Anisearch video",
-    longDescription: "Anisearch send a video",
-    cooldown: 5
+    description: "Search and get Anime TikTok videos",
+    category: "ANIME & MEDIA",
+    guide: "{pn} <anime name>"
   },
 
-  onStart: async function({ message, args, api, event }) {
-    return this.run({ message, args, api, event });
-  },
+  onStart: async function ({ api, event, message, args }) {
+    const { threadID, messageID } = event;
+    const query = args.join(" ");
+    if (!query) return message.reply("❌ Please provide an anime name to search.");
 
-  onChat: async function({ message, args, event, api }) {
-    const body = (event.body || "").toLowerCase();
-    if (!body.startsWith("anisearch")) return;
-    args = body.split(" ").slice(1);
-    return this.run({ message, args, api, event });
-  },
+    api.setMessageReaction("✨", messageID, () => {}, true);
 
-  run: async function({ message, args, api, event }) {
+    const API_URL = `https://xalman-apis.vercel.app/api/anisearch?q=${encodeURIComponent(query)}`;
+
     try {
-      const character = args.join(" ").trim();
-      const apiUrl = `https://azadx69x-all-apis-top.vercel.app/api/anisearch?character=${encodeURIComponent(character)}`;
-    	
-      api.setMessageReaction("✨", event.messageID, event.threadID, () => {}, true);
+      const res = await axios.get(API_URL, { timeout: 15000 });
+      const results = res.data.results;
 
-      const { data } = await axios.get(apiUrl);
-
-      if (!data?.success) {
-        api.setMessageReaction("❌", event.messageID, event.threadID, () => {}, true);
-        return message.reply(`❌ ${data?.message || "No Anisearch videos found"}`);
+      if (!results || results.length === 0) {
+        api.setMessageReaction("❌", messageID, () => {}, true);
+        return message.reply(`❌ No videos found for "${query}".`);
       }
 
-      let video = data.data;
-    	
-      if (video.duration && video.duration > 60) {
-        api.setMessageReaction("❌", event.messageID, event.threadID, () => {}, true);
-        return message.reply("❌ Video is too long! Only short videos (< 1 min) are allowed.");
-      }
-    	
-      const videoUrl = video.video_url.replace(/^\[|\]$/g, "");
-      const filePath = path.join(__dirname, `anisearch_${Date.now()}.mp4`);
-      const writer = fs.createWriteStream(filePath);
-      const response = await axios({ url: videoUrl, method: "GET", responseType: "stream" });
-      response.data.pipe(writer);
+      const video = results[0];
+      const stream = await global.utils.getStreamFromURL(video.video_url);
 
-      writer.on("finish", async () => {
-        api.setMessageReaction("✅", event.messageID, event.threadID, () => {}, true);
-        
-        await message.reply({
-          body: "",
-          attachment: fs.createReadStream(filePath)
-        });
+      api.setMessageReaction("✅", messageID, () => {}, true);
 
-        fs.unlinkSync(filePath);
-      });
+      const msg = `🎀 𝗔𝗡𝗜𝗠𝗘 𝗦𝗘𝗔𝗥𝗖𝗛 𝗥𝗘𝗦𝗨𝗟𝗧
+━━━━━━━━━━━━━━━━━━`;
 
-      writer.on("error", () => {
-        api.setMessageReaction("❌", event.messageID, event.threadID, () => {}, true);
-        return message.reply("❌ Error downloading video!");
-      });
+      return api.sendMessage({
+        body: msg,
+        attachment: stream
+      }, threadID, messageID);
 
-    } catch (err) {
-      console.error("❌ Anisearch CMD Error:", err.message);
-      api.setMessageReaction("❌", event.messageID, event.threadID, () => {}, true);
-      return message.reply("❌ Failed to fetch Anisearch video. Try again later.");
+    } catch (e) {
+      console.error(e);
+      api.setMessageReaction("❌", messageID, () => {}, true);
+      return message.reply("❌ Error fetching video. Please try again.");
     }
   }
 };

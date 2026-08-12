@@ -11,7 +11,7 @@ module.exports = {
     name: "developer",
     aliases: ["dev"],
     version: "2.0",
-    author: "Azadx69x",
+    author: "Anik Islam Sadik",
     countDown: 5,
     role: 5,
     description: { en: "Add, remove developer role" },

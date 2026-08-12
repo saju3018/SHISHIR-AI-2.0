@@ -15,7 +15,7 @@ module.exports = {
 
   onStart: async function ({ message, args, event, api }) {
     api.setMessageReaction("⏳", event.messageID, () => {}, true);
-
+    
     try {
       const keyword = args.join(" ").trim();
       if (!keyword) {
@@ -24,47 +24,38 @@ module.exports = {
       }
 
       
-      let res;
-      try {
-        res = await axios.get(`https://toshiro-api-editz6t9.vercel.app/api/search/tiksearch?keyword=${encodeURIComponent(keyword)}`, {timeout: 15000});
-      } catch(e) {
-        // API 2 backup
-        res = await axios.get(`https://api.tikwm.com/video/feed/search?keywords=${encodeURIComponent(keyword)}&count=1`, {timeout: 15000});
-      }
+      const { data } = await axios.get(
+        `https://toshiro-api-editz6t9.vercel.app/api/search/tiksearch?keyword=${encodeURIComponent(keyword)}`, 
+        { timeout: 15000 }
+      );
 
-      const data = res.data;
-      let videoUrl, title, author, duration;
-
-      if(data.success && data.result?.video){ // API 1
-        videoUrl = data.result.video;
-        title = data.result.title;
-        author = data.result.author;
-        duration = data.result.duration;
-      }
-      else if(data.data?.videos?.[0]){ // API 2
-        videoUrl = data.data.videos[0].play;
-        title = data.data.videos[0].title;
-        author = data.data.videos[0].author.nickname;
-        duration = data.data.videos[0].duration;
-      }
-      else {
+      if (!data.success || !data.result?.video) {
         throw new Error("No video found");
       }
 
-      const video = (await axios.get(videoUrl, { responseType: "stream", timeout: 20000 })).data;
-      api.setMessageReaction("✅", event.messageID, () => {}, true);
+      const { video: videoUrl, title, author, duration } = data.result;
 
+      const video = (await axios.get(videoUrl, { responseType: "stream", timeout: 20000 })).data;
+      
+      api.setMessageReaction("✅", event.messageID, () => {}, true);
+      
       const sentMsg = await message.reply({
-        body: `╭━━━━━━━━━━━━╮\n🎵 𝑻𝒊𝒌𝑻𝒐𝒌 𝑺𝒆𝒂𝒓𝒄𝒉\n╰━━━━━━━━━━━━╯\n🔍 𝗞𝗲𝘆𝘄𝗼𝗿𝗱: ${keyword}\n🎬 𝗧𝗶𝘁𝗹𝗲: ${title}\n👤 𝗖𝗿𝗲𝗮𝘁𝗼𝗿: ${author}\n⏳ 𝗗𝘂𝗿𝗮𝘁𝗶𝗼𝗻: ${duration}s`,
+        body: `╭━━━━━━━━━━━━╮
+🎵 𝑻𝒊𝒌𝑻𝒐𝒌 𝑺𝒆𝒂𝒓𝒄𝒉
+╰━━━━━━━━━━━━╯
+🔍 𝗞𝗲𝘆𝘄𝗼𝗿𝗱: ${keyword}
+🎬 𝗧𝗶𝘁𝗹𝗲: ${title}
+👤 𝗖𝗿𝗲𝗮𝘁𝗼𝗿: ${author}
+⏳ 𝗗𝘂𝗿𝗮𝘁𝗶𝗼𝗻: ${duration}s`,
         attachment: video
       });
 
       setTimeout(() => api.unsendMessage(sentMsg.messageID), 15000);
 
     } catch (err) {
-      console.error("TT Error:", err.message);
+      console.error("TT Error:", err.response?.data || err.message);
       api.setMessageReaction("❌", event.messageID, () => {}, true);
-      return message.reply(`❌ Failed to search TikTok\nReason: ${err.message}\n\nTry again later or change keyword.`);
+      return message.reply(`❌ Failed to search TikTok\nReason: ${err.response?.data?.message || err.message}`);
     }
   }
 };

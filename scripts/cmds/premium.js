@@ -6,7 +6,7 @@ module.exports = {
         name: "premium",
         aliases: ["prem"],
         version: "0.0.7",
-        author: "Azadx69x",
+        author: "Anik Islam Sadik",
         role: 3,
         shortDescription: { en: "Manage premium users" },
         longDescription: { en: "Add or remove premium users (permanent)" },

@@ -2,7 +2,7 @@ module.exports = {
   config: {
     name: "autoreact",
     version: "4.4.0",
-    author: "Anik Islam Sadik (React fix by Fahad Islam)",
+    author: "Anik Islam Sadik",
     role: 0,
     category: "system",
     shortDescription: "Auto react (emoji + text)",
@@ -34,7 +34,7 @@ module.exports = {
         { e: ["🎉","🥳"], r: "🎉" }
       ];
       const texts = [
-        { k: ["haha","lol","moja","xd"], r: "😆" },
+        { k: ["haha","lol","moja","xd","bal"], r: "😆" },
         { k: ["sad","kharap","kosto","mon kharap","cry"], r: "😢" },
         { k: ["love","valobasi","miss","alya","hinata","baby","bot","jan","bby"], r: "🥹" },
         { k: ["rag","angry","rage"], r: "😡" },
@@ -42,7 +42,14 @@ module.exports = {
         { k: ["prefix"], r: "🤖" },
         { k: ["ok","yes","okay","hmm"], r: "✅" },
         { k: ["cmd"], r: "🔖"},
-        { k: ["cdi","fuck","xdi","fk","chudi"], r: "🖕"}
+        { k: ["cdi","fuck","xdi","fk","chudi"], r: "🖕" },
+        { k: ["hlw","hellow","hey"], r: "😸" },
+        { k: ["fork","repo","repository"], r: "🍴" },
+        { k: ["alhamdulillah","valo","sweet","cute","beautiful"], r: "🥰" },
+        { k: ["birthday","birth","cake","happy birthday"], r: "🎂" },
+        { k: ["thanks","tnx","thank you","wlc","welcome"], r: "🦋" },
+        { k: ["good night","night","gn"], r: "💤" },
+        { k: ["good morning","morning","gm"], r: "🥱" },
       ];
       for (const c of categories) {
         if (c.e.some(x => text.includes(x))) {

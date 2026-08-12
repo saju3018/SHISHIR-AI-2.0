@@ -6,7 +6,7 @@ module.exports = {
         name: "creator",
         aliases: ["ctr"],
         version: "0.0.7",
-        author: "Azadx69x",
+        author: "Anik Islam Sadik",
         role: 6,
         shortDescription: { en: "Add, remove or view bot creators" },
         longDescription: { en: "Manage bot creators — add/remove/view" },

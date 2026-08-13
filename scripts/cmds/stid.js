@@ -3,7 +3,7 @@ const axios = require("axios");
 module.exports = {
   config: {
     name: "stid",
-    aliases: ["stickerid"],
+    aliases: ["stickerid", "st"],
     version: "1.0",
     author: "Anik Islam Sadik",
     countDown: 5,

@@ -3,10 +3,10 @@ const si = require("systeminformation");
 
 module.exports = {
   config: {
-    name: "up4",
-    aliases: ["4", "upt4"],
+    name: "up3",
+    aliases: ["3", "upt4"],
     version: "1.2",
-    author: "Azadx69x",
+    author: "Anik Islam Sadik",
     countDown: 5,
     role: 0,
     shortDescription: "system uptime",
@@ -35,7 +35,7 @@ module.exports = {
       await delay(400);
       try {
         await api.editMessage(
-          "X69X BOT System ✅\n" + loadStages[i],
+          "SATURO BOT System ✅\n" + loadStages[i],
           msgID
         );
       } catch (e) {
@@ -66,7 +66,7 @@ module.exports = {
 
       return `
 ╔═════════════════════╗
-║        ⚡ X69X BOT SYSTEM ⚡
+║        ⚡ SATURO BOT SYSTEM ⚡
 ╠═════════════════════╣
 ║ ⏳ Uptime   : ${d}d ${h}h ${m}m ${s}s
 ║ 📅 Date     : ${date}
@@ -81,7 +81,7 @@ module.exports = {
 ║
 ║ ⚙️ PID      : ${process.pid}
 ║ 🛠 Node.js  : ${process.version}
-║ 🧘‍♂️ Owner   : Azadx69x
+║ 🧘‍♂️ Owner   : Anik Islam Sadik
 ╠═════════════════════╣
 ║        ✅ SYSTEM RUNNING
 ╚═════════════════════╝

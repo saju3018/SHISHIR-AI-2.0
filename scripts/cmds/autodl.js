@@ -84,7 +84,7 @@ module.exports = {
       const speed = ((Date.now() - startTime) / 1000).toFixed(2);
 
       const msg = {
-        body: `╭━〔 ✅ 𝐀𝐮𝐭𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 〕━╮\n┃ 📌 Title     : ${info.title || "No Title"}\n┃ 🌐 Platform  : ${platform}\n┃ 👤 Author    : ${info.author || "Unknown"}\n┃ ⚡ Speed     : ${speed}s\n╰━━━━━━━━━━━━━━━━╯\n⚡ Powered by —͟͞͞Sᴀ𓆩ᴅ𓆪ɪᴋ 모 ❄️`,
+        body: `╭━〔 ✅ 𝐀𝐮𝐭𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 〕━╮\n┃ 📌 Title     : ${info.title || "No Title"}\n┃ 🌐 Platform  : ${platform}\n┃ 👤 Author    : ${info.author || "Unknown"}\n┃ ⚡ Speed     : ${speed}s\n╰━━━━━━━━━━━━━━━━╯\n⚡ Powered by —͟͞͞SHI𓆩SHI𓆪R 모 ❄️`,
         attachment: fs.createReadStream(filePath)
       };
 

@@ -27,6 +27,19 @@ module.exports = {
 
     const loading = await api.sendMessage(
       "X69X BOT System...⏳\n" + loadStages[0],
+      event.threadI ({ api, event }) {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    const loadStages = [
+      "[ █🗂️░░░░░░░░░░░░░░ ] 10%",
+      "[ █████🗂️░░░░░░░░░ ] 30%",
+      "[ █████████🗂️░░░░ ] 60%",
+      "[ █████████████✅ ] 80%",
+      "[ ███████████████ ] 100%"
+    ];
+
+    const loading = await api.sendMessage(
+      "X69X BOT System...⏳\n" + loadStages[0],
       event.threadID
     );
     const msgID = loading.messageID;
@@ -81,7 +94,39 @@ module.exports = {
 ║
 ║ ⚙️ PID      : ${process.pid}
 ║ 🛠 Node.js  : ${process.version}
-║ 🧘‍♂️ Owner   : Anik Islam Sadik
+║ 🧘‍♂️ Owner   : Ahmed Shishir 👑     await api.editMessage(
+            panel.replace("✅ SYSTEM RUNNING", "⏹ AUTO-UPDATE STOPPED"),
+            msgID
+          );
+        } catch {}
+        return;
+      }
+      try {
+        const update = await buildPanel();
+        await api.editMessage(update, msgID);
+      } catch {
+        clearInterval(intervalID);
+      }
+    }, 5000);
+  -}
+};
+ Shishir 👑        await api.editMessage(
+            panel.replace("✅ SYSTEM RUNNING", "⏹ AUTO-UPDATE STOPPED"),
+            msgID
+          );
+        } catch {}
+        return;
+      }
+      try {
+        const update = await buildPanel();
+        await api.editMessage(update, msgID);
+      } catch {
+        clearInterval(intervalID);
+      }
+    }, 5000);
+  }
+};
+
 ╠═════════════════════╣
 ║        ✅ SYSTEM RUNNING
 ╚═════════════════════╝

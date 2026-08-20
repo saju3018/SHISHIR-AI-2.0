@@ -98,7 +98,57 @@ module.exports = {
       ctx.textAlign = "right";
       ctx.shadowColor = "#ff00ff";
       ctx.shadowBlur = 25;
-      ctx.fillText("© aLpHa Sàdík", width - 80, height - 40);
+      ctx.fillText("©Ahmed shishir", width - 80, height - 40);
+
+      // Save + send
+      const outPath = path.join(__dirname, "uptime-cyberpunk.png");
+      const out = fs.createWriteStream(outPath);
+      const stream = canvas.createPNGStream();
+      stream.pipe(out);
+
+      out.on("finish", () => {
+        api.sendMessage(
+          {
+            body: "⚡Nezuko 𝚄𝚙𝚝𝚒𝚖𝚎 𝙸𝚗𝚏𝚘:",
+            attachment: fs.createReadStream(outPath)
+          },
+          event.threadID,
+          () => fs.unlinkSync(outPath)
+        );
+      });
+
+    } catch (err) {
+      console.error("Uptime card error:", err.message);
+      api.sendMessage("❌ Could not generate uptime card.", event.threadID);
+    }
+  }
+};
+Sàdík", width - 80, height - 40);
+
+      // Save + send
+      const outPath = path.join(__dirname, "uptime-cyberpunk.png");
+      const out = fs.createWriteStream(outPath);
+      const stream = canvas.createPNGStream();
+      stream.pipe(out);
+
+      out.on("finish", () => {
+        api.sendMessage(
+          {
+            body: "⚡𝚊𝙻𝚢𝚊 𝚄𝚙𝚝𝚒𝚖𝚎 𝙸𝚗𝚏𝚘:",
+            attachment: fs.createReadStream(outPath)
+          },
+          event.threadID,
+          () => fs.unlinkSync(outPath)
+        );
+      });
+
+    } catch (err) {
+      console.error("Uptime card error:", err.message);
+      api.sendMessage("❌ Could not generate uptime card.", event.threadID);
+    }
+  }
+};
+", width - 80, height - 40);
 
       // Save + send
       const outPath = path.join(__dirname, "uptime-cyberpunk.png");

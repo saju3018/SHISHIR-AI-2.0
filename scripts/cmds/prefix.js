@@ -96,10 +96,35 @@ module.exports = {
 👨‍💻 𝐘𝐨𝐮𝐫 𝐠𝐫𝐨𝐮𝐩 𝐩𝐫𝐞𝐟𝐢𝐱: ${threadPrefix}
  
 ╭‣ 𝐀𝐝𝐦𝐢𝐧 👑
-╰‣  🦋 ꫝɴ֟፝ɪᴋ ɪꜱʟꫝᴍ 𝚂ꫝᴅɪᴋ ♡
+╰‣  🦋𝐀𝐡𝐦𝐞𝐝 𝐒𝐡𝐢𝐬𝐡𝐢𝐫 ♡
+
  
 ╭‣ 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 ⓕ
-╰‣ m.facebook.com/anik.islam.sadik`,
+╰‣ m.facebook.com/shishir ahmed `,
+        attachment: await global.utils.getStreamFromURL(videoUrl)
+      });
+    }
+  }
+};
+ sadik`,
+        attachment: await global.utils.getStreamFromURL(videoUrl)
+      });
+    }
+  }
+};
+adik`,
+        attachment: await global.utils.getStreamFromURL(videoUrl)
+      });
+    }
+  }
+};
+.islam.sadik`,
+        attachment: await global.utils.getStreamFromURL(videoUrl)
+      });
+    }
+  }
+};
+.islam.sadik`,
         attachment: await global.utils.getStreamFromURL(videoUrl)
       });
     }

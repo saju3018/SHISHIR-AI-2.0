@@ -19,7 +19,23 @@ module.exports = {
   onStart: async function ({ api, event }) {
     const ownerText = 
 `╭─ 👑 Oᴡɴᴇʀ Iɴғᴏ 👑 ─╮
-│ 👤 Nᴀᴍᴇ       : ꫝɴ֟፝ɪᴋ ɪsʟꫝᴍ ѕꫝᴅɪᴋ 
+│ 👤 Nᴀᴍᴇ       : 𝐀𝐡𝐦𝐞𝐝 𝐒𝐡𝐢𝐬𝐡𝐢𝐫 ♡ 
+│ 🦋 Nɪᴄᴋ       : your abbu 
+│ 🎂 Aɢᴇ        : 𝟭7+
+│ 💘 Rᴇʟᴀᴛɪᴏɴ : singel
+│ 🎓 Pʀᴏғᴇssɪᴏɴ : 𝗦𝘁𝘂𝗱𝗲𝗻𝘁
+│ 📚 Eᴅᴜᴄᴀᴛɪᴏɴ : 𝗜𝗻𝘁𝗲𝗿 1st. Year 
+│ 🏡 Lᴏᴄᴀᴛɪᴏɴ : 𝐒𝐈𝐑𝐀𝐉𝐆𝐀𝐍𝐉
+├─ 🔗 Cᴏɴᴛᴀᴄᴛ ─╮
+│ 📘 Facebook  :  id=61592841571046
+│ 💬 Messenger: id=61592841571046
+│ 📞 WhatsApp  : 017493---26
+╰────────────────╯`;
+
+    const cacheDir = path.join(__dirname, "cache");
+    const imgPath = path.join(cacheDir, "owner.jpg");
+
+    if (!fs.existsSync(cacheDir)) fs.mkdirSync(c 
 │ 🦋 Nɪᴄᴋ       : কাঁঠ গোলাপ 
 │ 🎂 Aɢᴇ        : 𝟭𝟴+
 │ 💘 Rᴇʟᴀᴛɪᴏɴ : 𝗠𝗶𝗻𝗴𝗲𝗹

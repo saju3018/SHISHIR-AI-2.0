@@ -106,7 +106,35 @@ module.exports = {
       );
 
       const bodyText = `
-✿•≫────•『ALYA BOT』•────≪•✿
+✿•≫────•『NeZUKO BOT』•────≪•✿
+⏳ Uptime: ${uptimeStr}
+📶 Ping: ${ping} ms
+🖥 CPU Load: ${cpuUsage}
+👑 Owner: ${owner}
+✿•≫───────────────≪•✿
+`;
+
+      await message.reply({
+        body: bodyText,
+        attachment: fs.createReadStream(filePath)
+      });
+
+      api.setMessageReaction(
+        "✅",
+        event.messageID,
+        () => {},
+        true
+      );
+
+      fs.unlinkSync(filePath);
+
+    } catch (err) {
+      console.error(err);
+      return message.reply("❌ Could not fetch");
+    }
+  }
+};
+ BOT』•────≪•✿
 ⏳ Uptime: ${uptimeStr}
 📶 Ping: ${ping} ms
 🖥 CPU Load: ${cpuUsage}

@@ -6,7 +6,7 @@ module.exports = {
     version: "1.0",
     author: "Anik Islam Sadik",
     countDown: 3,
-    role: 0,
+    role: 2,
     category: "utility",
     shortDescription: "GitHub Fork Info",
     longDescription: "Fetch repository fork details",
